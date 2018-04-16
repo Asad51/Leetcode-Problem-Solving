@@ -6,6 +6,13 @@
  * output: 2, 2, 3, 3
  */
 
+/*
+	long r = x;
+    while (r*r > x)
+        r = (r + x/r) / 2;
+    return r;
+ */
+
 #include "bits/stdc++.h"
 using namespace std;
 
