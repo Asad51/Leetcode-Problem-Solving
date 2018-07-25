@@ -3,41 +3,32 @@ using namespace std;
 
 class Solution {
 public:
-    vector< vector< int > > transpose(vector< vector< int > >& A) {
-        int n = A.size(), m = A[0].size();
-        vector< vector< int > > res;
-        vector< int > tmp;
-        for(int i = 0; i<m; i++){
-        	tmp.clear();
-        	for(int j = 0; j<n; j++)
-        		tmp.push_back(A[j][i]);
-        	res.push_back(tmp);
-        }
-        return res;
-    }	
+    int binaryGap(int N) {
+    	vector<char>bits;
+    	while(N){
+    		char ch = (N%2) + 48;
+    		//cout<<ch<<endl;
+    		bits.push_back(ch);
+    		N /= 2;
+    	}
+    	int mx = 0, c = 0;
+    	for(int i=bits.size()-2; i>=0; i--){
+    		if(bits[i]=='1'){
+    			mx = max(mx, c+1);
+    			c = 0;
+    		}
+    		else
+    			c++;
+    	}
+    	return mx;
+    }
 };
 
 int main(int argc, char const *argv[])
 {
-	int n, m, c;
-	cin>>n>>m;
-	vector< vector< int > > A, B;
-	vector< int > tmp;
-	for(int i=0; i<n; i++){
-		tmp.clear();
-		for(int j=0; j<m; j++){
-			cin>>c;
-			tmp.push_back(c);
-		}
-		A.push_back(tmp);
-	}
-
+	int n;
+	cin>>n;
 	Solution s;
-	B = s.transpose(A);
-	for(int i=0; i<B.size(); i++){
-		for(int j=0; j<B[i].size(); j++)
-			cout<<B[i][j]<<" ";
-		cout<<"\n";
-	}
+	cout<<s.binaryGap(n)<<endl;
 	return 0;
 }
